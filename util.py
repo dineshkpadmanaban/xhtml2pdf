@@ -555,7 +555,10 @@ class pisaFileObject:
                     conn = httplib.HTTPSConnection(server)
                 else:
                     conn = httplib.HTTPConnection(server)
-                    conn.request("GET", path)
+                    try :
+                        conn.request("GET", path)
+                    except :
+                        return;
                 r1 = conn.getresponse()
                 # log.debug("HTTP %r %r %r %r", server, path, uri, r1)
                 if (r1.status, r1.reason) == (200, "OK"):
